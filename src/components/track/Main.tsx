@@ -1,6 +1,6 @@
 import { Action, ActionPanel, Icon, List } from "@raycast/api";
 import React, { useEffect, useState } from "react";
-import { logistics } from "../metadata/logistics";
+import { logistics } from "../../metadata/logistics";
 import Track from "./Track";
 
 export default function Main() {

@@ -3,14 +3,15 @@
   "name": "parcel-tracker",
   "title": "Parcel Tracker",
   "description": "for track packages (only available for South Korea)",
-  "icon": "command-icon.png",
+  "icon": "command-icon-parcel.png",
   "author": "junhyuk.jin",
   "license": "MIT",
   "commands": [
     {
-      "name": "index",
-      "title": "track",
-      "description": "",
+      "name": "track",
+      "title": "Track Packages",
+      "subtitle": "Parcel Tracker",
+      "description": "tracking packages by tracking number",
       "mode": "view"
     }
   ],

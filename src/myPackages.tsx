@@ -1,4 +1,4 @@
-import Main from "./components/Main";
+import Main from "./components/track/Main";
 
 export default function main() {
   return <Main></Main>;

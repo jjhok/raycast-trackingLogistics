@@ -1,8 +1,8 @@
-import { Icon, List } from "@raycast/api";
+import { Icon, List, showToast, ToastStyle } from "@raycast/api";
 import moment from "moment";
 import React, { useState } from "react";
-import { getSearchPage, getTrackData } from "../api/api";
-import { ITrackData } from "../model/trackData";
+import { getSearchPage, getTrackData } from "../../api/api";
+import { ITrackData } from "../../model/trackData";
 
 interface IProps {
   vendorKey: string;
@@ -10,6 +10,7 @@ interface IProps {
 
 export default function Track({ vendorKey }: IProps) {
   const [trackData, setTrackData] = useState<ITrackData>();
+  const [loading, setLoading] = useState<boolean>(false);
   const [hasError, setHasError] = useState<boolean>(false);
 
   const findPassportKey = (html: string) => {
@@ -21,6 +22,7 @@ export default function Track({ vendorKey }: IProps) {
   const handleTextChange = (trackNumber: string) => {
     const regex = new RegExp("[0-9]{8}");
     if (regex.test(trackNumber)) {
+      setLoading(true);
       getSearchPage()
         .then((response) => findPassportKey(response.data))
         .then((passportKey) => {
@@ -28,7 +30,11 @@ export default function Track({ vendorKey }: IProps) {
             setTrackData(response.data);
           });
         })
-        .catch((error) => setHasError(true));
+        .catch((error) => {
+          setHasError(true);
+          showToast(ToastStyle.Failure, "배송정보 조회를 실패했습니다.", error.message);
+        })
+        .finally(() => setLoading(false));
     }
   };
 
@@ -37,7 +43,7 @@ export default function Track({ vendorKey }: IProps) {
   };
 
   return (
-    <List onSearchTextChange={handleTextChange}>
+    <List onSearchTextChange={handleTextChange} isLoading={loading}>
       {trackData && !hasError && trackData.trackingDetails.length > 0 ? (
         <List.Section title="최종 배송상태">
           <List.Item
