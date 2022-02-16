@@ -1,7 +1,7 @@
 import { Icon, List } from "@raycast/api";
 import moment from "moment";
 import React, { useState } from "react";
-import { getNaverPasspordKey, getTrackData } from "../api/api";
+import { getSearchPage, getTrackData } from "../api/api";
 import { ITrackData } from "../model/trackData";
 
 interface IProps {
@@ -21,10 +21,8 @@ export default function Track({ vendorKey }: IProps) {
   const handleTextChange = (trackNumber: string) => {
     const regex = new RegExp("[0-9]{8}");
     if (regex.test(trackNumber)) {
-      getNaverPasspordKey()
-        .then((response) => {
-          return findPassportKey(response.data);
-        })
+      getSearchPage()
+        .then((response) => findPassportKey(response.data))
         .then((passportKey) => {
           getTrackData(vendorKey, trackNumber, passportKey).then((response) => {
             setTrackData(response.data);
