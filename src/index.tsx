@@ -1,7 +1,5 @@
-import MainPage from "./pages/MainPage";
-
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+import Main from "./components/Main";
 
 export default function main() {
-  return <MainPage></MainPage>;
+  return <Main></Main>;
 }

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { logistics } from "../metadata/logistics";
 import Track from "./Track";
 
-export default function MainPage() {
+export default function Main() {
   const vendors = logistics;
 
   return (
