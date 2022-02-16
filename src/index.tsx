@@ -1,5 +1,7 @@
-import { Detail } from "@raycast/api";
+import MainPage from "./pages/MainPage";
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 export default function main() {
-  return <Detail markdown="# Hello World" />;
+  return <MainPage></MainPage>;
 }
