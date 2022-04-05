@@ -19,8 +19,10 @@ export const getSearchPage = () => {
   );
 };
 
-export const getTrackData = (vendorId: string, trackId: string, passportKey: string) => {
+export const getTrackData = (vendorId: string, trackId: string) => {
   return instance.get(
-    `https://m.search.naver.com/p/csearch/ocontent/util/headerjson.naver?callapi=parceltracking&t_code=${vendorId}&t_invoice=${trackId}&passportKey=${passportKey}`
+    // `https://m.search.naver.com/p/csearch/ocontent/util/headerjson.naver?callapi=parceltracking&t_code=${vendorId}&t_invoice=${trackId}&passportKey=${passportKey}`
+    // `http://192.168.219.110:18000/api/tracking?vendorId=${vendorId}&invoiceNumber=${trackId}`
+    `http://localhost:8000/api/tracking?vendorId=${vendorId}&invoiceNumber=${trackId}`
   );
 };
